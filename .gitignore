@@ -1,0 +1,16 @@
+# build output
+*.exe
+*.o
+*.obj
+
+# logs
+*.log
+
+# editor / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+
+# python
+__pycache__/
