@@ -88,7 +88,7 @@ int main(int argc, char **argv) {
         if (n > 24) std::printf("...");
         std::printf("\n");
 
-        if (packets >= 30) {
+        if (packets >= 5) {
             std::printf("[client] enough for step 1, exiting\n");
             break;
         }
