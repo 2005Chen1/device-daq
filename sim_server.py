@@ -68,8 +68,11 @@ def main() -> None:
             conn.sendall(frame)
             sent += 1
             time.sleep(INTERVAL)
-    except (BrokenPipeError, ConnectionResetError):
-        print(f"[sim] client gone, total sent={sent}", flush=True)
+    except OSError as e:
+        # 客户端随时可能消失：正常退出、被强杀、网线被拔、机器休眠。
+        # BrokenPipe / ConnectionReset / ConnectionAborted 都是这件事的不同报法，
+        # 它们的公共基类是 OSError，一把接住就行。
+        print(f"[sim] client gone ({type(e).__name__}), total sent={sent}", flush=True)
     finally:
         conn.close()
         srv.close()
